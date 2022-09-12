@@ -82,9 +82,7 @@ namespace TestEntityFrameworkMVCProj.Models
                 entity.Property(e => e.WfmRemark)
                     .HasMaxLength(100)
                     .IsUnicode(false);
-            });
-
-           
+            });   
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Username)
