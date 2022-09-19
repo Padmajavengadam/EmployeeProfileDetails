@@ -11,10 +11,10 @@ namespace TestEntityFrameworkMVCProj.Models
         public string Name { get; set; }
         public string Status { get; set; }
         public string Manager { get; set; }
-        public string WfmManager { get; set; }
+        public string Wfm_Manager { get; set; }
         public string Email { get; set; }
         public string Lockstatus { get; set; }
         public decimal? Experience { get; set; }
-        public int? ProfileId { get; set; }
+        public int? Profile_Id { get; set; }
     }
 }
