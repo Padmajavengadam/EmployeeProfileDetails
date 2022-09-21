@@ -90,5 +90,28 @@ namespace TestEntityFrameworkMVCProj.Controllers
             }
 
         }
+        [HttpGet, Route("GetEmployee")]
+        public ActionResult GetEmployee()
+        {
+            var employees = _context.Employees.Include(s => s.SkillMap).ThenInclude(s => s.Skills).Select(x => new EmployeeSkill
+            {
+                EmployeeID = x.EmployeeId,
+                Email = x.Email,
+                Name = x.Name,
+                Manager = x.Manager,
+                Wfm_Manager = x.Wfm_Manager,
+                Skills = x.SkillMap.Select(y => y.Skills.Name).ToList()
+            }).ToList();
+
+            return new OkObjectResult(employees);
+        }
+
+        [HttpGet, Route("GetSkills")]
+        public ActionResult GetSkills()
+        {
+            var skills = _context.Skills.Include(s => s.SkillMap).ThenInclude(s => s.Employees).ToList();
+
+            return new OkObjectResult(skills);
+        }
     }
 }

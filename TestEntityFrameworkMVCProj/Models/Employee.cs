@@ -16,5 +16,6 @@ namespace TestEntityFrameworkMVCProj.Models
         public string Lockstatus { get; set; }
         public decimal? Experience { get; set; }
         public int? Profile_Id { get; set; }
+        public ICollection<SkillMap> SkillMap { get; set; }
     }
 }

@@ -22,6 +22,8 @@ namespace TestEntityFrameworkMVCProj.Models
         public virtual DbSet<Softlock> Softlocks { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<SkillMap> SkillMap { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -35,11 +37,11 @@ namespace TestEntityFrameworkMVCProj.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-           
+
 
             modelBuilder.Entity<Skill>(entity =>
             {
-                entity.Property(e => e.Skillid).HasColumnType("decimal(5, 0)");
+                entity.Property(e => e.Id).HasColumnType("decimal(5, 0)");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -82,7 +84,7 @@ namespace TestEntityFrameworkMVCProj.Models
                 entity.Property(e => e.WfmRemark)
                     .HasMaxLength(100)
                     .IsUnicode(false);
-            });   
+            });
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Username)

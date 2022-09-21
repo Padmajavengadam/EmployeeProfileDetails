@@ -23,6 +23,7 @@ namespace TestEntityFrameworkMVCProj
         {
 
             services.AddControllers();
+            services.AddControllersWithViews();
             //services.AddScoped<IPersonService, PeopleService>();
             services.AddScoped<IUserService, UserService>();
             services.AddEntityFrameworkSqlServer().AddDbContext<AzureStorageEmulatorDb510Context>();
@@ -47,9 +48,11 @@ namespace TestEntityFrameworkMVCProj
             app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                 name: "default",
+                 pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllers();
             });
         }
